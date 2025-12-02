@@ -1,2 +1,2 @@
 # advent2025
-go
+[go]([url](https://www.youtube.com/watch?v=WJq4jWSQNd8))
