@@ -31,7 +31,7 @@ func main() {
 			}
 		}
 		joltageStr := strconv.Itoa(battery1) + strconv.Itoa(battery2)
-		joltageNum, _ := strconv.Atoi(joltageStr)
+		joltageNum, _ := strconv.Atoi(joltageStr) //til - you can use an _ instead of an err var
 		joltage += joltageNum
 	}
 	fmt.Println(joltage)
@@ -45,14 +45,14 @@ func main() {
 		var idx int = 0
 		for batterySize > 0 {
 			var battery int = 0
-			for i := idx; i <= len(line)-batterySize; i++ {
+			for i := idx; i <= len(line)-batterySize; i++ { //make sure we always have a battery bank that is 12 digits long
 				current := int(line[i] - '0')
 				if current > battery {
 					battery = current
 					idx = i + 1
 				}
 			}
-			batteryBank += strconv.Itoa(battery)
+			batteryBank += strconv.Itoa(battery) //different approach for part 2, concat highest batteries each iteration
 			batterySize--
 		}
 		joltageNum, _ := strconv.Atoi(batteryBank)
