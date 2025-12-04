@@ -1,5 +1,5 @@
 /* npollender | advent2025 day 4 */
-
+ 
 package main
 
 import (
@@ -54,43 +54,30 @@ func main() {
 }
 
 func isCorner(x int, y int, rows int, cols int) bool {
-	if (x == 0 && y == 0) ||
-		(x == 0 && y == cols-1) ||
-		(x == rows-1 && y == 0) ||
-		(x == rows-1 && y == cols-1) {
-		return true
-	}
-	return false
+	return (x == 0 && y == 0) ||
+				 (x == 0 && y == cols-1) ||
+				 (x == rows-1 && y == 0) ||
+				 (x == rows-1 && y == cols-1)
+
 }
 
 func hasAccess(x int, y int, rows int, cols int, grid [][]byte) bool {
 	var papers int = 0
-	if x > 0 && grid[x-1][y] == '@' { //down
-		papers++
+	var dirs = [8][2]int{
+		{-1, 0}, {1, 0}, //up + down
+		{0, -1}, {0, 1}, // left + right
+		{-1, -1}, {-1, 1}, //diagonals ...
+		{1, -1}, {1, 1},
 	}
-	if x < rows-1 && grid[x+1][y] == '@' { //up
-		papers++
+
+	for _, offset := range dirs {
+		xDir := x + offset[0]
+		yDir := y + offset[1]
+
+		if (xDir >= 0 && xDir < rows && yDir >= 0 && yDir < cols) &&
+			 (grid[xDir][yDir] == '@') {
+			papers++
+		}
 	}
-	if y > 0 && grid[x][y-1] == '@' { //left
-		papers++
-	}
-	if y < cols-1 && grid[x][y+1] == '@' { //right
-		papers++
-	}
-	if x > 0 && y > 0 && grid[x-1][y-1] == '@' { //diagonals
-		papers++
-	}
-	if x > 0 && y < cols-1 && grid[x-1][y+1] == '@' {
-		papers++
-	}
-	if x < rows-1 && y > 0 && grid[x+1][y-1] == '@' {
-		papers++
-	}
-	if x < rows-1 && y < cols-1 && grid[x+1][y+1] == '@' {
-		papers++
-	}
-	if papers < 4 {
-		return true
-	}
-	return false
+	return papers < 4
 }
