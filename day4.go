@@ -55,9 +55,9 @@ func main() {
 
 func isCorner(x int, y int, rows int, cols int) bool {
 	return (x == 0 && y == 0) ||
-				 (x == 0 && y == cols-1) ||
-				 (x == rows-1 && y == 0) ||
-				 (x == rows-1 && y == cols-1)
+		   (x == 0 && y == cols-1) ||
+		   (x == rows-1 && y == 0) ||
+		   (x == rows-1 && y == cols-1)
 
 }
 
@@ -80,4 +80,5 @@ func hasAccess(x int, y int, rows int, cols int, grid [][]byte) bool {
 		}
 	}
 	return papers < 4
+
 }
