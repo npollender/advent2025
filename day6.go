@@ -46,7 +46,7 @@ func main() {
 
 	for i := 0; i < len(ops); {
 		var total int = 0
-		var inc int = 0 //the space between the current operand and the next operand
+		var inc int = 0 //the space between the current operator and the next operator
 		var nums []int
 		for j := i + 1; j <= len(ops); j++ {
 			if j == len(ops) || ops[j] == ' ' {
@@ -80,4 +80,5 @@ func main() {
 		i += inc + 1 //next operator position
 	}
 	fmt.Println(grandTotal)
+
 }
